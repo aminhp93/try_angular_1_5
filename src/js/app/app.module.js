@@ -8,4 +8,5 @@ angular.module('app', [
 	// internal
 	'blogDetail',
 	'blogList',
+	'confirmClick',
 	]);

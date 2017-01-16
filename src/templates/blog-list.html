@@ -4,6 +4,11 @@
 </div>
 <h1>Blog List</h1>
 <ul ng-if="items.length > 0">
-	<li ng-repeat="i in items"><a href="blog/{{i.id}}">{{ i.title }}</a></li>
+	<li ng-repeat="i in items">
+		<!-- <a href="#" ng-click ="goToItem(i)"/>{{ i.title }}</a> -->
+
+		<a href="/blog/{{i.id}}" ng-click ="goToItem(i)" confirm-click="are you sure" confirmed-click="/blog/{{i.id}}"/>{{ i.title }}</a>
+		<!-- <confirm-click message="are you positive" eq="10 + 1000" post="i"></confirm-click> -->
+	</li>
 </ul>
 <span ng-if="items.length==0">Comming Soon</span>

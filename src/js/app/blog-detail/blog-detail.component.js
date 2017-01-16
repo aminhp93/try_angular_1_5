@@ -3,7 +3,18 @@
 angular.module('blogDetail').
 component("blogDetail", {
     templateUrl: "/templates/blog-detail.html",
-    controller: function($scope, $routeParams, $location, $http) {
+    controller: function($scope, $routeParams, $location, $http, Post) {
+        console.log(Post.query())
+        console.log(Post.get())
+
+        Post.query(function(data) {
+            angular.forEach(data, function(post) {
+                if (post.id == $routeParams.id) {
+                    $scope.notFound = false
+                    $scope.post = post
+                }
+            })
+        })
 
         // var blogItems = [
         //     { title: "Some title1", id: 1, description: "this is a book1" },
@@ -23,25 +34,25 @@ component("blogDetail", {
         //     }
         // })
 
-        $http.get("/json/posts.json").then(success, error);
+        // $http.get("/json/posts.json").then(success, error);
 
-        function success(response, status, config, statusText) {
-            $scope.notFound = false
-            console.log(response.data)
-            var blogItems = response.data
-            $scope.post = blogItems
-                angular.forEach(blogItems, function(post){
-                    console.log(post)
-                    if (post.id == $routeParams.id){
-                        $scope.post = post
-                        $scope.notFound = false
-                    }
-                })
-        }
+        // function success(response, status, config, statusText) {
+        //     $scope.notFound = false
+        //     console.log(response.data)
+        //     var blogItems = response.data
+        //     $scope.post = blogItems
+        //     angular.forEach(blogItems, function(post) {
+        //         console.log(post)
+        //         if (post.id == $routeParams.id) {
+        //             $scope.post = post
+        //             $scope.notFound = false
+        //         }
+        //     })
+        // }
 
-        function error(response, status, config, statusText) {
-            console.log(response)
-        }
+        // function error(response, status, config, statusText) {
+        //     console.log(response)
+        // }
 
         if ($scope.notFound) {
             console.log("Not found")
