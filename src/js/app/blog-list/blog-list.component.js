@@ -2,10 +2,20 @@
 
 angular.module('blogList').
 component("blogList", {
-    // template: "<div><h1>{{ title }}</h1><button ng-click='someClickTest()'>Click me!</button></div>",
     templateUrl: "/templates/blog-list.html",
     controller: function($scope) {
         console.log("hello")
+
+        var blogItems = [
+            {title: "Some title1", id: 1, description: "this is a book1"},
+            {title: "Some title2", id: 2, description: "this is a book2"},
+            {title: "Some title3", id: 3, description: "this is a book3"},
+            {title: "Some title4", id: 4, description: "this is a book4"},
+
+        ]
+
+        $scope.items = blogItems
+
         $scope.title = "hi there"
         $scope.click = 0
 
