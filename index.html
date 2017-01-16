@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Try Django</title>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./js/app/app.config.js"></script>
+    <script src="./js/app/app.module.js"></script>
+    <style>
+    	.new_class{
+    		font-size: 72px;
+    	}
+    	.other_class {
+    		font-size: 32px;
+    	}
+        .new_class2{
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="new_class" ng-class="{'other_class': name=='minh', 'new_class2': font==100}">Hello  
+		<span ng-if="name">{{ name }}</span>
+		<span ng-if="!name">World</span>
+	</h1>
+    <input type="text" ng-model="name">
+    <input type="text" ng-model="font" placeholder="font">
+</body>
+
+</html>
