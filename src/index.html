@@ -2,16 +2,23 @@
 <html lang="en" ng-app="app">
 
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <title>Try Django</title>
     <!-- <script src="./bower_components/angular/angular.min.js"></script> -->
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js'></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+
     <script src="./js/app/app.module.js"></script>
     <script src="./js/app/app.config.js"></script>
     
+    <script src="./js/app/blog-detail/blog-detail.module.js"></script>
+    <script src="./js/app/blog-detail/blog-detail.component.js"></script>
+
     <script src="./js/app/blog-list/blog-list.module.js"></script>
     <script src="./js/app/blog-list/blog-list.component.js"></script>
-    <style>
+        <style>
     	.new_class{
     		font-size: 72px;
     	}
@@ -31,7 +38,7 @@
     </h1>
     <input type="text" ng-model="name">
     <input type="text" ng-model="font" placeholder="font">
-    <blog-list></blog-list>
+    <div ng-view></div>
 </body>
 
 </html>
