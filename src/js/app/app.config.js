@@ -8,6 +8,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
     	.when('/about', {
     		templateUrl: "templates/about.html"
     	})
+        .when('/blog', {
+            // template: "<blog-list></blog-list>"
+            redirectTo: '/'
+        })
         .when('/blog/:id/', {
         	template: "<blog-detail></blog-detail>"
         })

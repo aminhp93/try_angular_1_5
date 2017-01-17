@@ -13,7 +13,7 @@
             <li ng-repeat='i in post.comments | filter: query'>
                 {{ i.text }}
                 <!-- <a href="#" ng-click="deleteComment(i)">Delete</a> -->
-                <a href="#" confirm-click="Do you want to delete?" confirmed-click="deleteComment(i)">Confirm Delete</a>
+                <a href="#" class="btn btn-sm btn-danger" confirm-click="Do you want to delete?" confirmed-click="deleteComment(i)">Confirm Delete</a>
             </li>
         </ul>
         <p style="color:red" ng-if="reply.text">Reply: {{ reply.text }}</p>

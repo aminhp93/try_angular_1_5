@@ -4,6 +4,13 @@ angular.module('blogList').
 component("blogList", {
     templateUrl: "/templates/blog-list.html",
     controller: function($scope, $routeParams, Post, $rootScope, $location, $timeout) {
+        console.log($location.search())
+        var q = $location.search().q
+
+        if (q){
+            $scope.query = q;
+            $scope.searchQuery = true;
+        }
 
         // Post.query(function(data){
         //     angular.forEach(data, function(post){
@@ -82,7 +89,7 @@ component("blogList", {
         // $scope.loadingQuery = false
         // $scope.$watch(function(){
         //     console.log($scope.query)
-        //     if ($scope.query){
+        //     if ($scope.query != q){
         //         $scope.loadingQuery = true
         //         $scope.cssClass = "col-sm-12"
         //     } else {

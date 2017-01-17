@@ -14,6 +14,7 @@ angular.module("tryNav").directive('tryNav', function(Post, $location){
 			scope.searchItem = function(){
 				console.log(scope.searchQuery)
 				$location.path("/blog/").search("q", scope.searchQuery)
+				scope.searchQuery = ""
 			}
 		}
 	}
