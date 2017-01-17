@@ -5,7 +5,20 @@
 <h1>Blog List <small><a href="#" ng-click="changeCol()">Change</a></small></h1>
 <div class="row">
     <div class="col-sm-12">
-        <input type="text" ng-model="query" class="form-control" placeholder="Filter">
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="text" ng-model="query" class="form-control" placeholder="Filter">
+            </div>
+            <div class="col-sm-6">
+                <select name="" id="" ng-model="order" class="form-control">
+                    <option value="-publishDate">Recent</option>
+                    <option value="publishDate">Older</option>
+                    <option value="title">A-Z</option>
+                    <option value="-title">Z-A</option>
+                </select>
+            </div>
+        </div>
+        <dir-pagination-controls ng-hide="query.length > 0" pagination-id="sub-content"></dir-pagination-controls>
     </div>
 </div>
 <br>
@@ -16,17 +29,17 @@
         <confirm-click message="are you positive" eq="10 + 1000" post="i"></confirm-click>
     </li>
 </ul> -->
-<select name="" id="" ng-model="order">
-    <!-- <option value="-publishDate">Recent</option> -->
-    <!-- <option value="publishDate">Older</option> -->
-    <option value="title">A-Z</option>
-    <option value="-title">Z-A</option>
-</select>
-<li dir-paginate="item in items | orderBy: order | filter: query | itemsPerPage:5 as postItems" pagination-id="sub-content">
-    {{ item.title }}
-</li>
-<span ng-if="postItems.length == 0">No item found</span>
-<dir-pagination-controls ng-hide="query.length > 0" pagination-id="sub-content"></dir-pagination-controls>
+<div class="col-sm-6 col-sm-offset-3" dir-paginate="i in items | orderBy: order | filter: query | itemsPerPage:5 as postItems" pagination-id="sub-content">
+    <div class="thumbnail">
+        <img ng-src="{{ i.images }}" alt="...">
+        <div class="caption">
+            <h3>{{ i.title }}</h3>
+            <p>{{ i.title }} {{ i.description }}</p>
+            <p> <a href="/blog/{{i.id}}" ng-click="goToItem(i)" confirm-click="are you sure" confirmed-click="/blog/{{i.id}}" />{{ i.title }}</a><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        </div>
+    </div>
+</div>
+<!-- <span ng-if="postItems.length == 0">No item found</span>
 <span ng-if="items.length==0">Comming Soon</span>
 <div class="row" dir-paginate="items in colItems | itemsPerPage:2 | filter:query" pagination-id="main-content">
     <div class="{{ cssClass }}" ng-repeat="i in items">
@@ -40,7 +53,7 @@
         </div>
     </div>
 </div>
-<dir-pagination-controls ng-hide="query.length > 0" pagination-id="main-content"></dir-pagination-controls>
+<dir-pagination-controls ng-hide="query.length > 0" pagination-id="main-content"></dir-pagination-controls> -->
 <!-- <div class="row">
     <div class="col-sm-6 col-md-4" ng-repeat="i in items">
         <div class="thumbnail">
