@@ -23,8 +23,43 @@ component("blogList", {
         //     {title: "Some title3", id: 3, description: "this is a book3"},
         //     {title: "Some title4", id: 4, description: "this is a book4"}
         // ]
+        $scope.order = "title"
 
-        $scope.items = Post.query();
+        Post.query(function(data){
+            setupCol(data, 4)
+            
+            }, function(error){
+
+        });
+
+        $scope.changeCol = function(){
+            if ($scope.numCols == 2){
+                $scope.numCols = 4
+            } else {
+                $scope.numCols = 2
+            }
+            setupCol($scope.items, $scope.numCols)
+        }
+
+        function setupCol(data, number){
+            if (angular.isNumber(number)){
+                $scope.numCols = number
+            } else {
+                $scope.numCols = 4
+            }
+            $scope.cssClass = "col-sm-" + (12/$scope.numCols)
+            $scope.items = data
+            $scope.colItems = chunkArrayInGroups(data, $scope.numCols)
+        }
+
+        function chunkArrayInGroups(array, unit){
+            var results = [];
+            length = Math.ceil(array.length/unit);
+            for (var i = 0; i < length; i++){
+                results.push(array.slice(i*unit, (i + 1) * unit));
+            }
+            return results;
+        }
 
         // $scope.title = "hi there"
         // $scope.click = 0
@@ -42,5 +77,22 @@ component("blogList", {
                 $location.path("/blog/" + post.id)
             }, 0);
         }
+
+        // ===========================================================
+        // $scope.loadingQuery = false
+        // $scope.$watch(function(){
+        //     console.log($scope.query)
+        //     if ($scope.query){
+        //         $scope.loadingQuery = true
+        //         $scope.cssClass = "col-sm-12"
+        //     } else {
+        //         if ($scope.loadingQuery){
+        //             setupCol($scope.items, 2)
+        //             $scope.loadingQuery = false
+        //         }
+        //     }
+        // })
+
+
     }
 });
