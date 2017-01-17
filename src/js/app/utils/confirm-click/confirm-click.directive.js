@@ -16,6 +16,7 @@ angular.module("confirmClick").directive('confirmClick', function(){
 				} else {
 					console.log("Canceled")
 				}
+				
 			})
 		}
 	}

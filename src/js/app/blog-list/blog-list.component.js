@@ -3,7 +3,7 @@
 angular.module('blogList').
 component("blogList", {
     templateUrl: "/templates/blog-list.html",
-    controller: function($scope, $routeParams, Post, $rootScope, $location) {
+    controller: function($scope, $routeParams, Post, $rootScope, $location, $timeout) {
 
         // Post.query(function(data){
         //     angular.forEach(data, function(post){
@@ -36,10 +36,11 @@ component("blogList", {
         // }
 
         $scope.goToItem = function(post){
-            console.log("Some itmes")
-            $rootScope.$apply(function(){
+            console.log("Some itmes");
+            $timeout(function(){
+                console.log("success")
                 $location.path("/blog/" + post.id)
-            })
+            }, 0);
         }
     }
 });
